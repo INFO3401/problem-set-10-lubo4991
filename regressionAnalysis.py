@@ -147,6 +147,7 @@ candy_data_log_analysis.runMultipleRegression(candy_data)
 
 # -----
 #Based on the coefficient of determination(simple log= .43, multi log= .665), I can see that the multiple logisitical test outperformed the simple logisitical test.
+#The reason multi performs better is because you are using multiple independent variables at once, as opposed to one, for our prediction. Each independent variable has its own effect and when the effect of one depends on the level of the other, we can make more accurate predictions. One of the best ways I can conceptually understand this is using the example of testing active medication vs. placebo  and how these two independent variables can effectively predict wether a person is reacting pyschologically or physiologically to a drug.  
 
 
 
