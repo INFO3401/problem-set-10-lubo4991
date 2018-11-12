@@ -1,5 +1,6 @@
 #Lucas Bouchard
 
+#Worked with Steven, Harold, Zach, Justin
 #PROBLEM SET 10
 
 import pandas as pd
@@ -12,6 +13,7 @@ from sklearn.metrics import r2_score
 #%matplotlib inline
 
 #https://pythonspot.com/linear-regression/
+#https://datatofish.com/multiple-linear-regression-python/
 
 # Using the candy-data.csv file in the repo, populate an AnalysisData object that will hold the data you'll use for today's problem set. You should read in the data from the CSV, store the data in the dataset variable, and initialize the xs (column name) and targetY variables appropriately. targetY should reference the variable describing whether or not a candy is chocolate.
 
@@ -79,6 +81,7 @@ class LogisticAnalysis:
         self.targetY = target_Y
         self.fit = None
         self.type= int
+        
     def runSimpleAnalysis2(self, data):
         r2=-1
         best_variable=data.dataset
@@ -102,23 +105,17 @@ class LogisticAnalysis:
         
 
     def runMultipleRegression(self, data):
-        r2=-1
-        for column in data.X_variables:
-            if column != self.targetY:
-                X_variable= data.dataset[column].values
-                X_variable=X_variable.reshape(len(X_variable),1)
-                regression = LogisticRegression(solver='lbfgs')
-                regression.fit(X_variable, data.dataset[self.targetY])
-
-                predict = regression.predict(X_variable)
-                r_score = r2_score(data.dataset[self.targetY],predict)       
-                #if r_score > r2:
-                    #r2 = r_score
-                    #best_variable = column
-        #self.bestX = best_variable
-        print("Best Multi predictor is " + self.bestX + " at ", r2)
-        print('Multiple Regression Analysis Coefficients: ', regression.coef_)
-        print('Multiple Regression Analysis Intercept: ', regression.intercept_)        
+        Independent_var = [column for column in data.X_variables if column != self.targetY]
+        multi_regression = LogisticRegression(solver='lbfgs')
+        multi_regression.fit(data.dataset[Independent_var], data.dataset[self.targetY])
+        predict = multi_regression.predict(data.dataset[Independent_var])
+        r_score = r2_score(data.dataset[self.targetY], predict)
+        
+        print ('Multiple Regression Analysis Coefficients: ' + str(multi_regression.coef_))
+        print ("Multiple Regression Analysis Intercept: " + str(multi_regression.intercept_))
+        print("Multiple Regression Analysis r Squared: " + str(r_score))
+        
+                
         
         
    
@@ -145,8 +142,10 @@ candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 
 #Multiple Regression Test
 candy_data_log_analysis.runMultipleRegression(candy_data)
+#r^2= .6649775
 
 # -----
+#Based on the coefficient of determination(simple log= .43, multi log= .665), I can see that the multiple logisitical test outperformed the simple logisitical test.
 
 
 
@@ -160,7 +159,7 @@ candy_data_log_analysis.runMultipleRegression(candy_data)
 
 #Linear Test : y = -0.6502653283229836 + 0.02157451x
 #Logistic Test : p = 1/1+e^-(-7.13223813 + 0.13498466x)
-#Multiple Test : p = 1/1+e^-()
+#Multiple Test : p = 1/1+e^-(-5.51313478 + -2.52233157x + -0.10155515x + -0.16184304x + -0.07741522x + 0.39090365x + -0.1139018x + 0.82803675x + -0.29860863x + -0.10895876x + 0.57882234x + 0.12084965x)
 
 
 
