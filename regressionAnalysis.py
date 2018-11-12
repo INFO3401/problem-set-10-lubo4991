@@ -1,6 +1,6 @@
 #Lucas Bouchard
 
-
+#PROBLEM SET 10
 
 import pandas as pd
 import csv
@@ -116,7 +116,7 @@ candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 
 
 
-#MONDAY and WEDNESDAY Problem Set
+#MONDAY and WEDNESDAY Problem Set 10
 
 #PROBLEM 1
 #Add a function to the LogisticAnalysis object called runSimpleAnalysis. This function should take in an AnalysisData object as a parameter and should use this object to compute which variable best predicts whether or not a candy is chocolate using logistic regression. Print the variable name and the resulting fit. Do the two functions find the same optimal variable? Which method best fits this data? Make sure your best predictor is NOT the same as the targetY variable.
@@ -139,7 +139,7 @@ candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 # -----
 
 
-#FRIDAY Problem Set
+#FRIDAY Problem Set 10
 
 #PROBLEM 4
 
