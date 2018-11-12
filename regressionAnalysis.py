@@ -109,18 +109,18 @@ class LogisticAnalysis:
         
 
         
-candy_data_lin_analysis = LinearAnalysis('chocolate')
-candy_data_lin_analysis.runSimpleAnalysis(candy_data)
-candy_data_log_analysis = LogisticAnalysis('chocolate')
-candy_data_log_analysis.runSimpleAnalysis2(candy_data)
-
-
 
 #MONDAY and WEDNESDAY Problem Set 10
 
 #PROBLEM 1
 #Add a function to the LogisticAnalysis object called runSimpleAnalysis. This function should take in an AnalysisData object as a parameter and should use this object to compute which variable best predicts whether or not a candy is chocolate using logistic regression. Print the variable name and the resulting fit. Do the two functions find the same optimal variable? Which method best fits this data? Make sure your best predictor is NOT the same as the targetY variable.
 
+#Linear test
+candy_data_lin_analysis = LinearAnalysis('chocolate')
+candy_data_lin_analysis.runSimpleAnalysis(candy_data)
+#Logistic test
+candy_data_log_analysis = LogisticAnalysis('chocolate')
+candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 
 # ----- The linear test and logistic test did not find the same optimal variable with log predicting "fruity" and lin predicting "pricepercent." Based on the coefficient of determination, the logistic regression was far more effective at predicting the best variable in this dataset.
 
@@ -128,6 +128,9 @@ candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 #PROBLEM 2
 #Add a function to the LogisticAnalysis object called runMultipleRegression. This function should take in an AnalysisData object as a parameter and should use this object to compute a multiple logistic regression using all of the possible independent variables in your dataset to predict whether or not a candy is chocolate (note, you should not use your dependent variable as an independent variable). Print the variable name and resulting fit. In your testing code, create a new LogisticAnalysis object and use it to run this function on your candy data. Compare the outcomes of this and the simple logistic analysis. Which model best fits the data? Why? 
 
+#Multiple Regression Test
+#candy_data_log_analysis = LogisticAnalysis('chocolate')
+#candy_data_log_analysis.runMultipleRegression(candy_data)
 
 # -----
 
@@ -137,6 +140,14 @@ candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 #Write the equations for your linear, logistic, and multiple logistic regressions. Hint: Use the equations from the slides from Monday's lecture to work out what a logistic regression equation might look like. The coef_ and intercept_ attributes of your regression object will help a lot here!
 
 # -----
+#Linear Regression y = b0 + b1x
+#Logistic Regression p = 1/1+e^-(b0+b1x)
+#Multiple Regression p = 1/1+e^-(b0+b1x+b2x+b3x+....b9x)
+
+#Linear Test : y = -0.6502653283229836 + 0.02157451x
+#Logistic Test : p = 1/1+e^-(-7.13223813 + 0.13498466)
+#Multiple Test : p = 1/1+e^-()
+
 
 
 #FRIDAY Problem Set 10
@@ -154,8 +165,8 @@ candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 #null hypothesis: Blue and Red states have the same amount of split ticket holders
 
 #c.)
-#independent= battery life(continous variable)
-#dependent= selling rate(continous variable)
+#independent= battery life(Continous variable)
+#dependent= selling rate(Continous variable)
 #null hypothesis: battery life does not determine how successfully a phone sells
 
 
