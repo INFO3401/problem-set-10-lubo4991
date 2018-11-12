@@ -143,7 +143,7 @@ candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 
 #Multiple Regression Test
 candy_data_log_analysis.runMultipleRegression(candy_data)
-#r^2= .6649775
+#r^2= .6649775 
 
 # -----
 #Based on the coefficient of determination(simple log= .43, multi log= .665), I can see that the multiple logisitical test outperformed the simple logisitical test.
