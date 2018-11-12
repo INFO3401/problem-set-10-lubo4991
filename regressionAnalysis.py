@@ -51,16 +51,16 @@ class LinearAnalysis:
     def runSimpleAnalysis(self, data):
         linear_r2=-1
         best_linear_variable=None
-        #establish independent variable
+        #establish independent variable(X-axis)
         for column in data.X_variables:
             if column != self.targetY:
-                Y_variable= data.dataset[column].values
-                Y_variable=Y_variable.reshape(len(Y_variable),1)
+                X_variable= data.dataset[column].values
+                X_variable=X_variable.reshape(len(X_variable),1)
                 #Regression 
                 regression = LinearRegression()
-                regression.fit(Y_variable, data.dataset[self.targetY])
-                r_score = regression.predict(Y_variable)
-                r_score = r2_score(data.dataset[self.targetY],Y_variable)
+                regression.fit(X_variable, data.dataset[self.targetY])
+                r_score = regression.predict(X_variable)
+                r_score = r2_score(data.dataset[self.targetY],X_variable)
                 if r_score > linear_r2:
                     linear_r2 = r_score
                     best_linear_variable = column
@@ -82,15 +82,15 @@ class LogisticAnalysis:
     def runSimpleAnalysis2(self, data):
         r2=-1
         best_variable=data.dataset
-        #establish independent variable
+        #establish independent variable(X-axis)
         for column in data.X_variables:
             if column != self.targetY:
-                Y_variable= data.dataset[column].values
-                Y_variable=Y_variable.reshape(len(Y_variable),1)
+                X_variable= data.dataset[column].values
+                X_variable=X_variable.reshape(len(X_variable),1)
                 #Regression 
                 regression = LogisticRegression(solver='lbfgs')
-                regression.fit(Y_variable, data.dataset[self.targetY])
-                r_score = regression.predict(Y_variable)
+                regression.fit(X_variable, data.dataset[self.targetY])
+                r_score = regression.predict(X_variable)
                 r_score = r2_score(data.dataset[self.targetY],r_score)
                 if r_score > r2:
                     r2 = r_score
@@ -99,14 +99,29 @@ class LogisticAnalysis:
         print("Best log predictor is " + self.bestX + " at ", r2)
         print('Logistic Regression Analysis Coefficients: ', regression.coef_)
         print('Logistic Regression Analysis Intercept: ', regression.intercept_)
+        
 
+    def runMultipleRegression(self, data):
+        r2=-1
+        for column in data.X_variables:
+            if column != self.targetY:
+                X_variable= data.dataset[column].values
+                X_variable=X_variable.reshape(len(X_variable),1)
+                regression = LogisticRegression(solver='lbfgs')
+                regression.fit(X_variable, data.dataset[self.targetY])
+
+                predict = regression.predict(X_variable)
+                r_score = r2_score(data.dataset[self.targetY],predict)       
+                #if r_score > r2:
+                    #r2 = r_score
+                    #best_variable = column
+        #self.bestX = best_variable
+        print("Best Multi predictor is " + self.bestX + " at ", r2)
+        print('Multiple Regression Analysis Coefficients: ', regression.coef_)
+        print('Multiple Regression Analysis Intercept: ', regression.intercept_)        
+        
+        
    
-        
-        
-    #def runMultipleRegression(self, data):
-        #r2=-1
-        #best_variable=data.dataset
-        
 
         
 
@@ -129,8 +144,7 @@ candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 #Add a function to the LogisticAnalysis object called runMultipleRegression. This function should take in an AnalysisData object as a parameter and should use this object to compute a multiple logistic regression using all of the possible independent variables in your dataset to predict whether or not a candy is chocolate (note, you should not use your dependent variable as an independent variable). Print the variable name and resulting fit. In your testing code, create a new LogisticAnalysis object and use it to run this function on your candy data. Compare the outcomes of this and the simple logistic analysis. Which model best fits the data? Why? 
 
 #Multiple Regression Test
-#candy_data_log_analysis = LogisticAnalysis('chocolate')
-#candy_data_log_analysis.runMultipleRegression(candy_data)
+candy_data_log_analysis.runMultipleRegression(candy_data)
 
 # -----
 
@@ -145,7 +159,7 @@ candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 #Multiple Regression p = 1/1+e^-(b0+b1x+b2x+b3x+....b9x)
 
 #Linear Test : y = -0.6502653283229836 + 0.02157451x
-#Logistic Test : p = 1/1+e^-(-7.13223813 + 0.13498466)
+#Logistic Test : p = 1/1+e^-(-7.13223813 + 0.13498466x)
 #Multiple Test : p = 1/1+e^-()
 
 
