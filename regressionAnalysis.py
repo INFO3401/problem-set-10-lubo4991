@@ -105,7 +105,8 @@ class LogisticAnalysis:
         
 
     def runMultipleRegression(self, data):
-        Independent_var = [column for column in data.X_variables if column != self.targetY]
+      
+        Independent_var = [column for column in data.X_variables if column != self.targetY and column != 'chocolate' and column != 'competitorname' ]
         multi_regression = LogisticRegression(solver='lbfgs')
         multi_regression.fit(data.dataset[Independent_var], data.dataset[self.targetY])
         predict = multi_regression.predict(data.dataset[Independent_var])
