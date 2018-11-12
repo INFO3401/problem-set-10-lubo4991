@@ -106,21 +106,9 @@ class LogisticAnalysis:
     #def runMultipleRegression(self, data):
         #r2=-1
         #best_variable=data.dataset
+        
 
-#PROBLEM 1
-#Add a function to the LogisticAnalysis object called runSimpleAnalysis. This function should take in an AnalysisData object as a parameter and should use this object to compute which variable best predicts whether or not a candy is chocolate using logistic regression. Print the variable name and the resulting fit. Do the two functions find the same optimal variable? Which method best fits this data? Make sure your best predictor is NOT the same as the targetY variable.
-
-
-
-
-
-
-
-
-#PROBLEM 2. Create a function to initialize a LinearAnalysis object that takes a targetY as its input parameter. Create the same function for LogisticAnalysis. Note that you will use the LinearAnalysis object to try to predict the amount of sugar in the candy and the LogisticAnalysis object to predict whether or not the candy is chocolate.
-#ABOVE
-
-#Problem 3
+        
 candy_data_lin_analysis = LinearAnalysis('chocolate')
 candy_data_lin_analysis.runSimpleAnalysis(candy_data)
 candy_data_log_analysis = LogisticAnalysis('chocolate')
@@ -128,10 +116,55 @@ candy_data_log_analysis.runSimpleAnalysis2(candy_data)
 
 
 
-#Problem 4
-#a.) independent=All the different types of candies(Categorical Variable)
-#dependent= sugar percent(continous variable)
-#null hypothesis: 
+#MONDAY and WEDNESDAY Problem Set
+
+#PROBLEM 1
+#Add a function to the LogisticAnalysis object called runSimpleAnalysis. This function should take in an AnalysisData object as a parameter and should use this object to compute which variable best predicts whether or not a candy is chocolate using logistic regression. Print the variable name and the resulting fit. Do the two functions find the same optimal variable? Which method best fits this data? Make sure your best predictor is NOT the same as the targetY variable.
+
+
+# ----- The linear test and logistic test did not find the same optimal variable with log predicting "fruity" and lin predicting "pricepercent." Based on the coefficient of determination, the logistic regression was far more effective at predicting the best variable in this dataset.
+
+
+#PROBLEM 2
+#Add a function to the LogisticAnalysis object called runMultipleRegression. This function should take in an AnalysisData object as a parameter and should use this object to compute a multiple logistic regression using all of the possible independent variables in your dataset to predict whether or not a candy is chocolate (note, you should not use your dependent variable as an independent variable). Print the variable name and resulting fit. In your testing code, create a new LogisticAnalysis object and use it to run this function on your candy data. Compare the outcomes of this and the simple logistic analysis. Which model best fits the data? Why? 
+
+
+# -----
+
+
+
+#PROBLEM 3
+#Write the equations for your linear, logistic, and multiple logistic regressions. Hint: Use the equations from the slides from Monday's lecture to work out what a logistic regression equation might look like. The coef_ and intercept_ attributes of your regression object will help a lot here!
+
+# -----
+
+
+#FRIDAY Problem Set
+
+#PROBLEM 4
+
+#a.) 
+#independent= Caramel and Chocolate(Categorical Variable)
+#dependent= sugar percent(Continous variable)
+#null hypothesis:  Caramel and chocolate contain the same amount of sugar percentage
+
+#b.)
+#independent= Blue and Red States(Categorical variable)
+#dependent= number of split ticket holders(Continous variable)
+#null hypothesis: Blue and Red states have the same amount of split ticket holders
+
+#c.)
+#independent= battery life(continous variable)
+#dependent= selling rate(continous variable)
+#null hypothesis: battery life does not determine how successfully a phone sells
+
+
+
+
+
+
+
+
 
      
         
